@@ -113,7 +113,7 @@ const App: React.FC = () => {
         <div className="absolute inset-0 bg-black bg-opacity-50">
           <div className="container mx-auto px-4 h-full flex items-center">
             <div className="max-w-3xl">
-              <h1 className="text-4xl font-bold mb-3">Ne Zha: Reborn on the Sea</h1>
+              <h1 className="text-4xl font-bold mb-3">Nezha: Mo Tong Nao Hai</h1>
               <p className="text-lg mb-4">Experience the legendary tale of Ne Zha in this spectacular animated feature</p>
             </div>
           </div>
@@ -247,7 +247,7 @@ const App: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* About */}
             <div className="col-span-2">
-              <h4 className="text-xl font-bold mb-4">About Ne Zha: Reborn on the Sea</h4>
+              <h4 className="text-xl font-bold mb-4">About Nezha: Mo Tong Nao Hai</h4>
               <p className="text-gray-300">
                 A modern reimagining of the beloved Chinese legend, bringing ancient mythology 
                 to life through spectacular animation and compelling storytelling.
@@ -295,9 +295,9 @@ const App: React.FC = () => {
 
           {/* Copyright */}
           <div className="border-t border-blue-800 mt-8 pt-8 text-center text-gray-400">
-            <p>© 2024 Ne Zha: Reborn on the Sea. All rights reserved.</p>
+            <p>© 2024 Nezha: Mo Tong Nao Hai. All rights reserved.</p>
             <p className="mt-2 text-sm">
-              NeZha character and story based on Chinese mythology and folklore. 
+              Nezha character and story based on Chinese mythology and folklore. 
               Website designed with ❤️ for animation fans worldwide.
             </p>
           </div>
