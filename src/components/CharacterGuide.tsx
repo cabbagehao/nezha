@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Maximize2, X } from 'lucide-react';
 import './CharacterGuide.css';
 import ScrollToTop from './ScrollToTop';
+import Navigation from './Navigation';
 
 interface Character {
   name: string;
@@ -12,6 +13,10 @@ interface Character {
 
 const CharacterGuide: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const characters = {
     mainCharacters: [
@@ -124,64 +129,65 @@ const CharacterGuide: React.FC = () => {
 
   return (
     <div className="character-guide">
-      <h2>Character Guide</h2>
+      <Navigation />
       
-      <div className="text-center mb-8">
-        <p className="text-lg text-gray-300">
-          Step into the mythical world of Nezha 2, where ancient legends come alive. From the 
-          charismatic and rebellious Nezha to the majestic Dragon Kings of the Four Seas, each 
-          character brings their own extraordinary powers and compelling stories to this epic tale.
-        </p>
+      <div className="content-wrapper">
+        <div className="container mx-auto px-4 py-12">
+          <h1 className="text-4xl font-bold mb-3">Character Guide</h1>
+          <p className="text-lg text-gray-300 mb-8">
+            Meet the legendary characters from Nezha 2
+          </p>
+
+          <section className="character-section">
+            <h3>Main Characters</h3>
+            <div className="character-grid">
+              {characters.mainCharacters.map(char => (
+                <CharacterCard key={char.name} char={char} />
+              ))}
+            </div>
+          </section>
+
+          <section className="character-section">
+            <h3>Dragon Kings</h3>
+            <div className="character-grid">
+              {characters.dragonKings.map(char => (
+                <CharacterCard key={char.name} char={char} />
+              ))}
+            </div>
+          </section>
+
+          <section className="character-section">
+            <h3>Supporting Characters</h3>
+            <div className="character-grid">
+              {characters.supportingCharacters.map(char => (
+                <CharacterCard key={char.name} char={char} />
+              ))}
+            </div>
+          </section>
+
+          {/* Image Modal */}
+          {selectedImage && (
+            <div className="image-modal" onClick={() => setSelectedImage(null)}>
+              <div className="modal-content" onClick={e => e.stopPropagation()}>
+                <button 
+                  className="close-button"
+                  onClick={() => setSelectedImage(null)}
+                  aria-label="Close image"
+                >
+                  <X size={24} />
+                </button>
+                <img 
+                  src={selectedImage} 
+                  alt={`Full view of ${characters.mainCharacters
+                    .concat(characters.dragonKings)
+                    .concat(characters.supportingCharacters)
+                    .find(char => char.image === selectedImage)?.name || 'character'} from Nezha 2`} 
+                />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-
-      <section className="character-section">
-        <h3>Main Characters</h3>
-        <div className="character-grid">
-          {characters.mainCharacters.map(char => (
-            <CharacterCard key={char.name} char={char} />
-          ))}
-        </div>
-      </section>
-
-      <section className="character-section">
-        <h3>Dragon Kings</h3>
-        <div className="character-grid">
-          {characters.dragonKings.map(char => (
-            <CharacterCard key={char.name} char={char} />
-          ))}
-        </div>
-      </section>
-
-      <section className="character-section">
-        <h3>Supporting Characters</h3>
-        <div className="character-grid">
-          {characters.supportingCharacters.map(char => (
-            <CharacterCard key={char.name} char={char} />
-          ))}
-        </div>
-      </section>
-
-      {/* Image Modal */}
-      {selectedImage && (
-        <div className="image-modal" onClick={() => setSelectedImage(null)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <button 
-              className="close-button"
-              onClick={() => setSelectedImage(null)}
-              aria-label="Close image"
-            >
-              <X size={24} />
-            </button>
-            <img 
-              src={selectedImage} 
-              alt={`Full view of ${characters.mainCharacters
-                .concat(characters.dragonKings)
-                .concat(characters.supportingCharacters)
-                .find(char => char.image === selectedImage)?.name || 'character'} from Nezha 2`} 
-            />
-          </div>
-        </div>
-      )}
       <ScrollToTop />
     </div>
   );

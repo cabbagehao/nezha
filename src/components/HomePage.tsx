@@ -3,6 +3,8 @@ import { Calendar, Star, Film, BookOpen } from 'lucide-react';
 import { Ratings, fetchRatings } from '../services/ratings';
 import ImageCarousel from './ImageCarousel';
 import ScrollToTop from './ScrollToTop';
+import { Link } from 'react-router-dom';
+import Navigation from './Navigation';
 
 export const HomePage: React.FC = () => {
   const [ratings, setRatings] = useState<Ratings>({
@@ -104,11 +106,13 @@ export const HomePage: React.FC = () => {
           backgroundPosition: 'center 20%'
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-50">
+        <Navigation />
+        
+        <div className="absolute inset-0 bg-black bg-opacity-70">
           <div className="container mx-auto px-4 h-full flex items-center">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl font-bold mb-3">Nezha: Mo Tong Nao Hai</h1>
-              <p className="text-lg mb-4">Experience the legendary tale of Ne Zha in this spectacular animated feature</p>
+            <div className="max-w-3xl mt-8 md:mt-0">
+              <h1 className="text-3xl md:text-4xl font-bold mb-3">Nezha: Mo Tong Nao Hai</h1>
+              <p className="text-base md:text-lg mb-4">Experience the legendary tale of Ne Zha in this spectacular animated feature</p>
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 import './QA.css';
 import ScrollToTop from './ScrollToTop';
+import Navigation from './Navigation';
 
 interface QAItem {
   question: string;
@@ -24,6 +25,10 @@ const QA: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
   const scrollToTop = () => {
@@ -112,29 +117,30 @@ const QA: React.FC = () => {
 
   return (
     <div className="qa-container">
-      <h2>Frequently Asked Questions</h2>
+      <Navigation />
       
-      <div className="text-center mb-8">
-        <p className="text-lg text-gray-300">
-          Discover more about Nezha 2 through our comprehensive FAQ section, covering everything 
-          from story details to animation techniques.
-        </p>
-      </div>
+      <div className="content-wrapper">
+        <div className="container mx-auto px-4 py-12">
+          <h1 className="text-4xl font-bold mb-3">Frequently Asked Questions</h1>
+          <p className="text-lg text-gray-300 mb-8">
+            Discover more about Nezha 2
+          </p>
 
-      {qaSections.map((section, sectionIndex) => (
-        <div key={sectionIndex} className="qa-section">
-          <h3 className="section-title">{section.title}</h3>
-          <div className="qa-list">
-            {section.items.map((item, index) => (
-              <div key={index} className="qa-item">
-                <h4>{item.question}</h4>
-                <p>{item.answer}</p>
+          {qaSections.map((section, sectionIndex) => (
+            <div key={sectionIndex} className="qa-section">
+              <h3 className="section-title">{section.title}</h3>
+              <div className="qa-list">
+                {section.items.map((item, index) => (
+                  <div key={index} className="qa-item">
+                    <h4>{item.question}</h4>
+                    <p>{item.answer}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      ))}
-
+      </div>
       <ScrollToTop />
     </div>
   );

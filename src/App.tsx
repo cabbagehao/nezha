@@ -5,6 +5,7 @@ import './App.css';
 import CharacterGuide from './components/CharacterGuide';
 import { HomePage } from './components/HomePage'; // 我们将把 HomePage 移到单独的文件中
 import QA from './components/QA'; // 导入 QA 组件
+import { ScrollToTopOnMount } from './components/ScrollToTop';
 
 if (import.meta.hot) {
   import.meta.hot.accept()
@@ -13,22 +14,9 @@ if (import.meta.hot) {
 const App: React.FC = () => {
   return (
     <Router>
+      <ScrollToTopOnMount />
       <div className="min-h-screen text-white bg-gradient-to-b from-blue-900 to-blue-950 flex flex-col">
-        {/* Navigation Menu */}
-        <nav className="bg-blue-900 shadow-lg">
-          <div className="container mx-auto px-4">
-            <div className="flex justify-between items-center h-16">
-              <Link to="/" className="text-xl font-bold">Nezha 2</Link>
-              <div className="flex space-x-4">
-                <Link to="/" className="hover:text-blue-300 transition">Home</Link>
-                <Link to="/characters" className="hover:text-blue-300 transition">Characters</Link>
-                <Link to="/qa" className="hover:text-blue-300 transition">Q&A</Link>
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        {/* Routes */}
+        {/* 移除独立的导航栏，导航链接会移到 HomePage 组件中 */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/characters" element={<CharacterGuide />} />
@@ -53,16 +41,19 @@ const App: React.FC = () => {
                 <h4 className="text-xl font-bold mb-4">Quick Links</h4>
                 <ul className="space-y-2 text-gray-300">
                   <li>
-                    <a href="#trailer" className="hover:text-white transition">Watch Trailer</a>
+                    <Link to="/" className="hover:text-white transition">Home</Link>
                   </li>
                   <li>
-                    <a href="#releases" className="hover:text-white transition">Release Dates</a>
+                    <Link to="/characters" className="hover:text-white transition">Characters</Link>
                   </li>
                   <li>
-                    <a href="#reviews" className="hover:text-white transition">Reviews</a>
+                    <Link to="/qa" className="hover:text-white transition">Q&A</Link>
                   </li>
                   <li>
-                    <a href="#legend" className="hover:text-white transition">The Legend</a>
+                    <a href="/#trailer" className="hover:text-white transition">Watch Trailer</a>
+                  </li>
+                  <li>
+                    <a href="/#legend" className="hover:text-white transition">The Legend</a>
                   </li>
                 </ul>
               </div>
