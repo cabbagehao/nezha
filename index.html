@@ -36,10 +36,16 @@
       gtag('config', 'G-8EDHPTB1R8');
     </script>
 
-    <!-- 关键资源优先加载 -->
+    <!-- 预加载关键 JS -->
+    <link rel="modulepreload" href="/index-B8aHEGMR.js" />
+    
+    <!-- 预加载首屏关键资源 -->
     <link rel="preload" href="/images/nezha-homepage.jpg" as="image" fetchpriority="high" />
     <link rel="preload" href="/images/imdb-logo.png" as="image" fetchpriority="high" />
     <link rel="preload" href="/images/douban-logo.ico" as="image" fetchpriority="high" />
+    
+    <!-- 预加载关键 CSS -->
+    <link rel="preload" href="/index-DRAh8ija.css" as="style" />
     
     <!-- 延迟加载非关键资源 -->
     <link rel="preconnect" href="https://www.youtube.com" crossorigin />

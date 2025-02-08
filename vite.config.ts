@@ -11,5 +11,16 @@ export default defineConfig({
     watch: {
       usePolling: true
     }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['lucide-react'],
+        }
+      }
+    },
+    chunkSizeWarningLimit: 500
   }
 });

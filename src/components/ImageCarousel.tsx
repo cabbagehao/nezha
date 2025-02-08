@@ -14,9 +14,12 @@ const ImageCarousel: React.FC = () => {
   const images = Object.values(imageModules).map((path, index) => ({
     src: path as string,
     alt: `Nezha 2 Movie Poster ${index + 1}`,
-    loading: "lazy" as const,
+    loading: "lazy",
     width: 800,
-    height: 450
+    height: 450,
+    // 添加 srcset 支持响应式图片
+    srcSet: `${path} 800w, ${path.replace('.webp', '-small.webp')} 400w`,
+    sizes: "(max-width: 768px) 400px, 800px"
   }));
 
   useEffect(() => {
