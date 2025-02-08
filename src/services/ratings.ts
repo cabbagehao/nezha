@@ -17,6 +17,8 @@ const FALLBACK_DATA = {
   douban: { score: '8.5', votes: '850.5K' }
 };
 
+const API_BASE_URL = 'https://nezha.yhc.so/api';
+
 export const fetchRatings = async (): Promise<Ratings> => {
   try {
     // 先尝试从缓存获取
