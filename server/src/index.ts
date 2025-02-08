@@ -34,7 +34,7 @@ app.get('/api/ratings', async (req, res) => {
     console.error('Error fetching ratings:', error);
     res.status(500).json({
       error: 'Failed to fetch ratings',
-      douban: { score: '8.5', votes: '802.1K' },
+      douban: { score: '8.5', votes: '850.5K' },
       imdb: { score: '8.2', votes: '811' }
     });
   }

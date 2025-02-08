@@ -21,7 +21,7 @@ export async function fetchRatings(): Promise<Ratings> {
     console.error('Error fetching ratings:', error);
     return {
       imdb: { score: '8.2', votes: '811' },
-      douban: { score: '8.5', votes: '802.1K' }
+      douban: { score: '8.5', votes: '850.5K' }
     };
   }
 } 

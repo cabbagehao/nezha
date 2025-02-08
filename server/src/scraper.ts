@@ -20,7 +20,7 @@ async function scrapeDouban(): Promise<Rating> {
     };
   } catch (error) {
     console.error('Error scraping Douban:', error);
-    return { score: '8.5', votes: '802.1K' };
+    return { score: '8.5', votes: '850.5K' };
   }
 }
 
