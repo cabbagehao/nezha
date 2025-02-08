@@ -9,19 +9,49 @@ export interface Ratings {
   douban: Rating;
 }
 
-// 获取评分数据的函数
-export async function fetchRatings(): Promise<Ratings> {
+// 添加缓存
+const CACHE_KEY = 'movie_ratings';
+const CACHE_TIME = 5 * 60 * 1000; // 5 minutes
+const FALLBACK_DATA = {
+  imdb: { score: '8.2', votes: '811' },
+  douban: { score: '8.5', votes: '850.5K' }
+};
+
+export const fetchRatings = async (): Promise<Ratings> => {
   try {
-    const response = await fetch('http://localhost:3001/api/ratings');
-    if (!response.ok) {
-      throw new Error('Failed to fetch ratings');
+    // 先尝试从缓存获取
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const { data, timestamp } = JSON.parse(cached);
+      if (Date.now() - timestamp < CACHE_TIME) {
+        return data;
+      }
     }
-    return await response.json();
+
+    // 设置超时
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+    const response = await fetch('/api/ratings', {
+      signal: controller.signal
+    });
+    
+    clearTimeout(timeoutId);
+    
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json();
+    localStorage.setItem(CACHE_KEY, JSON.stringify({
+      data,
+      timestamp: Date.now()
+    }));
+    
+    return data;
   } catch (error) {
-    console.error('Error fetching ratings:', error);
-    return {
-      imdb: { score: '8.2', votes: '811' },
-      douban: { score: '8.5', votes: '850.5K' }
-    };
+    console.error('Failed to fetch ratings:', error);
+    // 使用缓存的数据作为后备
+    return FALLBACK_DATA;
   }
-} 
+}; 

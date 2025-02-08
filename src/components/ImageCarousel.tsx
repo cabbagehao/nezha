@@ -13,7 +13,10 @@ const ImageCarousel: React.FC = () => {
   // 转换为图片路径数组并添加 alt 文本
   const images = Object.values(imageModules).map((path, index) => ({
     src: path as string,
-    alt: `Nezha 2 Movie Poster ${index + 1}`
+    alt: `Nezha 2 Movie Poster ${index + 1}`,
+    loading: "lazy" as const,
+    width: 800,
+    height: 450
   }));
 
   useEffect(() => {
@@ -46,6 +49,9 @@ const ImageCarousel: React.FC = () => {
               <img 
                 src={image.src} 
                 alt={image.alt}
+                loading={image.loading}
+                width={image.width}
+                height={image.height}
                 onError={(e) => console.error(`Failed to load image: ${image.src}`, e)}
               />
             </div>

@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { Calendar, Star, Film, BookOpen } from 'lucide-react';
 import { Ratings, fetchRatings } from '../services/ratings';
-import ImageCarousel from './ImageCarousel';
 import ScrollToTop from './ScrollToTop';
 import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
 
-export const HomePage: React.FC = () => {
+const ImageCarousel = lazy(() => import('./ImageCarousel'));
+const TrailerSection = lazy(() => import('./TrailerSection'));
+
+const HomePage: React.FC = () => {
   const [ratings, setRatings] = useState<Ratings>({
     imdb: { score: '...', votes: '...' },
     douban: { score: '...', votes: '...' }
@@ -62,11 +64,12 @@ export const HomePage: React.FC = () => {
         <img 
           src={logo} 
           alt={site} 
+          width={site === 'IMDb' ? 70 : 90}
+          height={site === 'IMDb' ? 32 : 28}
+          loading="eager"
           className="h-8 mr-3 object-contain"
           style={{
             filter: site === 'IMDb' ? 'brightness(1.2) contrast(1.1)' : 'none',
-            maxWidth: site === 'IMDb' ? '70px' : '90px',
-            height: site === 'IMDb' ? '32px' : '28px'
           }}
         />
         <div>
@@ -144,19 +147,13 @@ export const HomePage: React.FC = () => {
           <h2 className="text-3xl font-bold mb-6 flex items-center">
             <Film className="mr-2" /> Official Trailer
           </h2>
-          <div className="aspect-w-16 aspect-h-9">
-            <iframe 
-              width="1065" 
-              height="599" 
-              src="https://www.youtube.com/embed/nsXQijb0F4I" 
-              title="NeZha 2 International Trailer | 《哪吒2》 国际预告片" 
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              referrerPolicy="strict-origin-when-cross-origin" 
-              allowFullScreen
-              className="w-full h-[500px] rounded-lg"
-            ></iframe>
-          </div>
+          <Suspense fallback={
+            <div className="h-[500px] bg-blue-800 bg-opacity-30 rounded-lg animate-pulse flex items-center justify-center">
+              <div className="text-white">Loading trailer...</div>
+            </div>
+          }>
+            <TrailerSection />
+          </Suspense>
         </section>
 
         {/* Reviews Section */}
@@ -189,7 +186,13 @@ export const HomePage: React.FC = () => {
           <h2 className="text-3xl font-bold mb-6 flex items-center">
             <Film className="mr-2" /> Movie Stills
           </h2>
-          <ImageCarousel />
+          <Suspense fallback={
+            <div className="h-[500px] bg-blue-800 bg-opacity-30 rounded-lg animate-pulse flex items-center justify-center">
+              <div className="text-white">Loading images...</div>
+            </div>
+          }>
+            <ImageCarousel />
+          </Suspense>
         </section>
 
         {/* Mythology Background */}
@@ -249,4 +252,6 @@ export const HomePage: React.FC = () => {
       <ScrollToTop />
     </>
   );
-}; 
+};
+
+export default HomePage; 

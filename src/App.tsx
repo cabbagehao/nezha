@@ -1,27 +1,47 @@
-import React from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Calendar, Star, Film, BookOpen, HelpCircle } from 'lucide-react';
 import './App.css';
-import CharacterGuide from './components/CharacterGuide';
-import { HomePage } from './components/HomePage'; // 我们将把 HomePage 移到单独的文件中
-import QA from './components/QA'; // 导入 QA 组件
 import { ScrollToTopOnMount } from './components/ScrollToTop';
 
 if (import.meta.hot) {
   import.meta.hot.accept()
 }
 
+// 简化懒加载的写法
+const HomePage = lazy(() => import('./components/HomePage'));
+const CharacterGuide = lazy(() => import('./components/CharacterGuide'));
+const QA = lazy(() => import('./components/QA'));
+
 const App: React.FC = () => {
+  useEffect(() => {
+    // 预加载其他页面资源
+    const prefetchOtherPages = () => {
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = '/characters';
+      document.head.appendChild(link);
+    };
+    
+    // 当首页加载完成后执行
+    window.requestIdleCallback?.(prefetchOtherPages);
+  }, []);
+
   return (
     <Router>
       <ScrollToTopOnMount />
       <div className="min-h-screen text-white bg-gradient-to-b from-blue-900 to-blue-950 flex flex-col">
-        {/* 移除独立的导航栏，导航链接会移到 HomePage 组件中 */}
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/characters" element={<CharacterGuide />} />
-          <Route path="/qa" element={<QA />} />
-        </Routes>
+        <Suspense fallback={
+          <div className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-950 flex items-center justify-center">
+            <div className="text-white text-xl">Loading...</div>
+          </div>
+        }>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/characters" element={<CharacterGuide />} />
+            <Route path="/qa" element={<QA />} />
+          </Routes>
+        </Suspense>
 
         {/* Footer */}
         <footer className="bg-blue-950 mt-auto">

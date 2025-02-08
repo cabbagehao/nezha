@@ -35,6 +35,15 @@
       gtag('js', new Date());
       gtag('config', 'G-8EDHPTB1R8');
     </script>
+
+    <!-- 关键资源优先加载 -->
+    <link rel="preload" href="/images/nezha-homepage.jpg" as="image" fetchpriority="high" />
+    <link rel="preload" href="/images/imdb-logo.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="/images/douban-logo.ico" as="image" fetchpriority="high" />
+    
+    <!-- 延迟加载非关键资源 -->
+    <link rel="preconnect" href="https://www.youtube.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.youtube.com" />
   </head>
   <body>
     <div id="root"></div>
