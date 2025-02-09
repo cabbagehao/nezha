@@ -83,6 +83,13 @@
       }
 
       .hero-title {
+        position: absolute;
+        top: 0;
+        left: -9999px;
+        /* 对屏幕阅读器可见，但在视觉上隐藏 */
+      }
+
+      .hero-heading {
         font-size: 3.5rem;
         font-weight: bold;
         margin-bottom: 1.5rem;
@@ -98,17 +105,19 @@
   </head>
   <body>
     <div id="root">
-      <div class="hero-section">
-        <div class="hero-content">
-          <h1 class="hero-title">Nezha: Mo Tong Nao Hai</h1>
-          <p class="hero-subtitle">A Modern Chinese Animation Epic</p>
+      <main>
+        <h1 class="hero-title">哪吒：魔童闹海 | Nezha: Mo Tong Nao Hai</h1>
+        <div class="hero-section">
+          <div class="hero-content">
+            <h2 class="hero-heading">Nezha: Mo Tong Nao Hai</h2>
+            <p class="hero-subtitle">A Modern Chinese Animation Epic</p>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
 
     <script type="module" src="/src/main.tsx"></script>
     <script>
-      // 添加页面加载完成的处理
       window.addEventListener('load', function() {
         const root = document.getElementById('root');
         requestAnimationFrame(() => {
