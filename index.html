@@ -136,5 +136,28 @@
         });
       });
     </script>
+
+    <script>
+      // 保存滚动位置
+      window.addEventListener('beforeunload', function() {
+        sessionStorage.setItem('scrollPosition', window.scrollY.toString());
+      });
+
+      // 恢复滚动位置
+      window.addEventListener('load', function() {
+        const savedPosition = sessionStorage.getItem('scrollPosition');
+        if (savedPosition) {
+          // 使用 requestAnimationFrame 确保在页面渲染后恢复位置
+          requestAnimationFrame(() => {
+            window.scrollTo({
+              top: parseInt(savedPosition),
+              behavior: 'instant' // 使用即时滚动避免动画
+            });
+            // 清除保存的位置
+            sessionStorage.removeItem('scrollPosition');
+          });
+        }
+      });
+    </script>
   </body>
 </html>

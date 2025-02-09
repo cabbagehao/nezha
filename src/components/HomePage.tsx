@@ -184,7 +184,7 @@ const HomePage: React.FC = () => {
         {/* Image Carousel Section */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-6 flex items-center">
-            <Film className="mr-2" /> Movie Stills
+            <Film className="mr-2" /> Movie Poster
           </h2>
           <Suspense fallback={
             <div className="h-[500px] bg-blue-800 bg-opacity-30 rounded-lg animate-pulse flex items-center justify-center">
