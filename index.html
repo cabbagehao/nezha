@@ -36,23 +36,85 @@
       gtag('config', 'G-8EDHPTB1R8');
     </script>
 
-    <!-- 预加载关键 JS -->
-    <link rel="modulepreload" href="/index-B8aHEGMR.js" />
-    
     <!-- 预加载首屏关键资源 -->
     <link rel="preload" href="/images/nezha-homepage.jpg" as="image" fetchpriority="high" />
     <link rel="preload" href="/images/imdb-logo.png" as="image" fetchpriority="high" />
     <link rel="preload" href="/images/douban-logo.ico" as="image" fetchpriority="high" />
     
-    <!-- 预加载关键 CSS -->
-    <link rel="preload" href="/index-DRAh8ija.css" as="style" />
-    
     <!-- 延迟加载非关键资源 -->
     <link rel="preconnect" href="https://www.youtube.com" crossorigin />
     <link rel="dns-prefetch" href="https://www.youtube.com" />
+
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(180deg, #1e3a8a 0%, #172554 100%);
+        color: white;
+        min-height: 100vh;
+      }
+
+      #root {
+        min-height: 100vh;
+        background: linear-gradient(180deg, #1e3a8a 0%, #172554 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease-in;
+      }
+
+      #root.loaded {
+        opacity: 1;
+      }
+
+      /* 添加首屏必要的样式 */
+      .hero-section {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(180deg, rgba(30, 58, 138, 0.5) 0%, rgba(23, 37, 84, 0.5) 100%);
+      }
+
+      .hero-content {
+        text-align: center;
+        padding: 2rem;
+        max-width: 48rem;
+        margin: 0 auto;
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+      }
+
+      .hero-subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="hero-section">
+        <div class="hero-content">
+          <h1 class="hero-title">Nezha: Mo Tong Nao Hai</h1>
+          <p class="hero-subtitle">A Modern Chinese Animation Epic</p>
+        </div>
+      </div>
+    </div>
+
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // 添加页面加载完成的处理
+      window.addEventListener('load', function() {
+        const root = document.getElementById('root');
+        requestAnimationFrame(() => {
+          root.classList.add('loaded');
+        });
+      });
+    </script>
   </body>
 </html>
