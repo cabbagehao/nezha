@@ -10,7 +10,7 @@
 
   <!-- Character Guide -->
   <url>
-    <loc>https://nezha.yhc.so/characters</loc>
+    <loc>https://nezha.yhc.so/characters/</loc>
     <lastmod>2024-03-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -18,7 +18,7 @@
 
   <!-- Q&A Page -->
   <url>
-    <loc>https://nezha.yhc.so/qa</loc>
+    <loc>https://nezha.yhc.so/qa/</loc>
     <lastmod>2024-03-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
