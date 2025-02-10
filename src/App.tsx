@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Calendar, Star, Film, BookOpen, HelpCircle } from 'lucide-react';
 import './App.css';
 import { ScrollToTopOnMount } from './components/ScrollToTop';
+import Loading from './components/Loading';
 
 if (import.meta.hot) {
   import.meta.hot.accept()
@@ -10,8 +11,8 @@ if (import.meta.hot) {
 
 // 简化懒加载的写法
 const HomePage = lazy(() => import('./components/HomePage'));
-const CharacterGuide = lazy(() => import('./components/CharacterGuide'));
-const QA = lazy(() => import('./components/QA'));
+const CharactersPage = lazy(() => import('./components/CharactersPage'));
+const QAPage = lazy(() => import('./components/QAPage'));
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -31,15 +32,11 @@ const App: React.FC = () => {
     <Router>
       <ScrollToTopOnMount />
       <div className="min-h-screen text-white bg-gradient-to-b from-blue-900 to-blue-950 flex flex-col">
-        <Suspense fallback={
-          <div className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-950 flex items-center justify-center">
-            <div className="text-white text-xl">Loading...</div>
-          </div>
-        }>
+        <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/characters" element={<CharacterGuide />} />
-            <Route path="/qa" element={<QA />} />
+            <Route path="/characters" element={<CharactersPage />} />
+            <Route path="/qa" element={<QAPage />} />
           </Routes>
         </Suspense>
 

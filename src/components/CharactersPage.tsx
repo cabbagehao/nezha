@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Maximize2, X } from 'lucide-react';
-import './CharacterGuide.css';
+import './CharacterGuide.css';  // 保持使用现有的 CSS
 import ScrollToTop from './ScrollToTop';
 import Navigation from './Navigation';
 
+// 从 CharacterGuide.tsx 复制所有接口定义
 interface Character {
   name: string;
   description: string;
@@ -11,13 +12,15 @@ interface Character {
   image?: string;
 }
 
-const CharacterGuide: React.FC = () => {
+const CharactersPage: React.FC = () => {
+  // 从 CharacterGuide.tsx 复制所有状态和逻辑
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // 从 CharacterGuide.tsx 复制 characters 数据
   const characters = {
     mainCharacters: [
       {
@@ -97,8 +100,9 @@ const CharacterGuide: React.FC = () => {
     ]
   };
 
+  // 从 CharacterGuide.tsx 复制 CharacterCard 组件
   const CharacterCard = ({ char }: { char: Character }) => (
-    <div key={char.name} className="character-card">
+    <div className="character-card">
       {char.image && (
         <div className="character-image">
           <img 
@@ -178,10 +182,7 @@ const CharacterGuide: React.FC = () => {
                 </button>
                 <img 
                   src={selectedImage} 
-                  alt={`Full view of ${characters.mainCharacters
-                    .concat(characters.dragonKings)
-                    .concat(characters.supportingCharacters)
-                    .find(char => char.image === selectedImage)?.name || 'character'} from Nezha 2`} 
+                  alt={`Full view of character from Nezha 2`} 
                 />
               </div>
             </div>
@@ -193,4 +194,4 @@ const CharacterGuide: React.FC = () => {
   );
 };
 
-export default CharacterGuide; 
+export default CharactersPage; 

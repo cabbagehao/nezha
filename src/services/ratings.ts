@@ -5,55 +5,73 @@ export interface Rating {
 }
 
 export interface Ratings {
-  imdb: Rating;
-  douban: Rating;
+  imdb: {
+    score: string;
+    votes: string;
+  };
+  douban: {
+    score: string;
+    votes: string;
+  };
 }
 
 // 添加缓存
 const CACHE_KEY = 'movie_ratings';
 const CACHE_TIME = 5 * 60 * 1000; // 5 minutes
-const FALLBACK_DATA = {
+const FALLBACK_DATA: Ratings = {
   imdb: { score: '8.2', votes: '811' },
   douban: { score: '8.5', votes: '850.5K' }
 };
 
 const API_BASE_URL = 'https://nezha.yhc.so/api';
 
-export const fetchRatings = async (): Promise<Ratings> => {
+export async function fetchRatings(): Promise<Ratings> {
   try {
-    // 先尝试从缓存获取
-    const cached = localStorage.getItem(CACHE_KEY);
-    if (cached) {
-      const { data, timestamp } = JSON.parse(cached);
-      if (Date.now() - timestamp < CACHE_TIME) {
-        return data;
-      }
+    const response = await fetch(`${API_BASE_URL}/ratings`);
+    
+    // 检查 Content-Type
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      console.error('Invalid content type:', contentType);
+      return FALLBACK_DATA;
     }
 
-    // 设置超时
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
-
-    const response = await fetch('/api/ratings', {
-      signal: controller.signal
-    });
-    
-    clearTimeout(timeoutId);
-    
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = await response.json();
-    localStorage.setItem(CACHE_KEY, JSON.stringify({
-      data,
-      timestamp: Date.now()
-    }));
-    
+    // 尝试解析 JSON
+    let data;
+    try {
+      data = await response.json();
+    } catch (parseError) {
+      console.error('Failed to parse JSON:', parseError);
+      return FALLBACK_DATA;
+    }
+
+    // 验证返回的数据结构
+    if (!isValidRatings(data)) {
+      console.error('Invalid ratings data structure:', data);
+      return FALLBACK_DATA;
+    }
+
     return data;
   } catch (error) {
     console.error('Failed to fetch ratings:', error);
-    // 使用缓存的数据作为后备
     return FALLBACK_DATA;
   }
-}; 
+}
+
+// 验证返回的数据结构是否符合预期
+function isValidRatings(data: any): data is Ratings {
+  return (
+    data &&
+    typeof data === 'object' &&
+    'imdb' in data &&
+    'douban' in data &&
+    typeof data.imdb?.score === 'string' &&
+    typeof data.imdb?.votes === 'string' &&
+    typeof data.douban?.score === 'string' &&
+    typeof data.douban?.votes === 'string'
+  );
+} 

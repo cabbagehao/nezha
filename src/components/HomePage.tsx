@@ -22,7 +22,8 @@ const HomePage: React.FC = () => {
         const data = await fetchRatings();
         setRatings(data);
       } catch (error) {
-        console.error('Failed to fetch ratings:', error);
+        console.error('Error fetching ratings:', error);
+        setRatings([]);
       } finally {
         setLoading(false);
       }
