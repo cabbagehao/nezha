@@ -5,17 +5,11 @@ export interface Rating {
 }
 
 export interface Ratings {
-  imdb: {
-    score: string;
-    votes: string;
-  };
-  douban: {
-    score: string;
-    votes: string;
-  };
+  imdb: Rating;
+  douban: Rating;
 }
 
-// 添加缓存
+/* 将来用于从 API 获取评分
 const CACHE_KEY = 'movie_ratings';
 const CACHE_TIME = 5 * 60 * 1000; // 5 minutes
 const FALLBACK_DATA: Ratings = {
@@ -24,45 +18,9 @@ const FALLBACK_DATA: Ratings = {
 };
 
 const API_BASE_URL = 'https://nezha.yhc.so/api';
+*/
 
-export async function fetchRatings(): Promise<Ratings> {
-  try {
-    const response = await fetch(`${API_BASE_URL}/ratings`);
-    
-    // 检查 Content-Type
-    const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      console.error('Invalid content type:', contentType);
-      return FALLBACK_DATA;
-    }
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    // 尝试解析 JSON
-    let data;
-    try {
-      data = await response.json();
-    } catch (parseError) {
-      console.error('Failed to parse JSON:', parseError);
-      return FALLBACK_DATA;
-    }
-
-    // 验证返回的数据结构
-    if (!isValidRatings(data)) {
-      console.error('Invalid ratings data structure:', data);
-      return FALLBACK_DATA;
-    }
-
-    return data;
-  } catch (error) {
-    console.error('Failed to fetch ratings:', error);
-    return FALLBACK_DATA;
-  }
-}
-
-// 验证返回的数据结构是否符合预期
+/* 将来用于验证 API 返回的数据
 function isValidRatings(data: any): data is Ratings {
   return (
     data &&
@@ -74,4 +32,5 @@ function isValidRatings(data: any): data is Ratings {
     typeof data.douban?.score === 'string' &&
     typeof data.douban?.votes === 'string'
   );
-} 
+}
+*/ 

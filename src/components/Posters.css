@@ -1,0 +1,16 @@
+.posters-page {
+  min-height: 100vh;
+}
+
+.poster-image-wrapper {
+  aspect-ratio: 2/3;
+  overflow: hidden;
+}
+
+.poster-card {
+  transition: transform 0.2s ease;
+}
+
+.poster-card:hover {
+  transform: translateY(-4px);
+} 

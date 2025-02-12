@@ -1,39 +1,24 @@
-import React, { useEffect, useState, lazy, Suspense } from 'react';
-import { Calendar, Star, Film, BookOpen } from 'lucide-react';
-import { Ratings, fetchRatings } from '../services/ratings';
+import React, { lazy, Suspense } from 'react';
+import { Calendar, Star, Film, BookOpen, ArrowRight, TrendingUp } from 'lucide-react';
+import { Ratings } from '../services/ratings';
 import ScrollToTop from './ScrollToTop';
 import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
+import './Home.css';
 
-const ImageCarousel = lazy(() => import('./ImageCarousel'));
 const TrailerSection = lazy(() => import('./TrailerSection'));
 
 const HomePage: React.FC = () => {
-  const [ratings, setRatings] = useState<Ratings>({
-    imdb: { score: '...', votes: '...' },
-    douban: { score: '...', votes: '...' }
-  });
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const getRatings = async () => {
-      try {
-        setLoading(true);
-        const data = await fetchRatings();
-        setRatings(data);
-      } catch (error) {
-        console.error('Error fetching ratings:', error);
-        setRatings([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getRatings();
-
-    const interval = setInterval(getRatings, 5 * 60 * 1000);
-    return () => clearInterval(interval);
-  }, []);
+  const ratings: Ratings = {
+    imdb: {
+      score: '8.3',
+      votes: '2k'
+    },
+    douban: {
+      score: '8.5',
+      votes: '1M'
+    }
+  };
 
   const globalReleases = [
     { date: '2025-01-29', countries: ['Mainland China'] },
@@ -42,14 +27,7 @@ const HomePage: React.FC = () => {
     { date: 'Coming Soon', countries: ['Singapore', 'Malaysia', 'Egypt', 'South Africa', 'Pakistan', 'Japan', 'Korea'] }
   ];
 
-  const RatingCard = ({ 
-    site, 
-    logo, 
-    score, 
-    votes, 
-    url, 
-    starColor 
-  }: { 
+  const RatingCard = ({ site, logo, score, votes, url, starColor }: { 
     site: string;
     logo: string;
     score: string;
@@ -75,22 +53,12 @@ const HomePage: React.FC = () => {
         />
         <div>
           <div className="flex items-center">
-            {loading ? (
-              <div className="animate-pulse bg-gray-600 h-8 w-24 rounded"></div>
-            ) : (
-              <>
-                <Star className={`w-5 h-5 ${starColor} mr-1`} fill="currentColor" />
-                <span className="text-2xl font-bold">{score}</span>
-                <span className="text-sm ml-2 text-gray-300">/ 10</span>
-              </>
-            )}
+            <Star className={`w-5 h-5 ${starColor} mr-1`} fill="currentColor" />
+            <span className="text-2xl font-bold">{score}</span>
+            <span className="text-sm ml-2 text-gray-300">/ 10</span>
           </div>
           <div className="text-sm text-gray-300">
-            {loading ? (
-              <div className="animate-pulse bg-gray-600 h-4 w-16 rounded mt-1"></div>
-            ) : (
-              `${votes} votes`
-            )}
+            {`${votes} votes`}
           </div>
         </div>
       </div>
@@ -157,43 +125,103 @@ const HomePage: React.FC = () => {
           </Suspense>
         </section>
 
-        {/* Reviews Section */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-6 flex items-center">
-            <Star className="mr-2" /> Reviews
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <RatingCard 
-              site="IMDb"
-              logo="/images/imdb-logo.png"
-              score={ratings.imdb.score}
-              votes={ratings.imdb.votes}
-              url="https://www.imdb.com/title/tt34956443/"
-              starColor="text-yellow-400"
-            />
-            <RatingCard 
-              site="豆瓣"
-              logo="/images/douban-logo.ico"
-              score={ratings.douban.score}
-              votes={ratings.douban.votes}
-              url="https://movie.douban.com/subject/34780991/"
-              starColor="text-green-400"
-            />
+        {/* Reviews and Box Office Section */}
+        <section className="py-16 bg-gradient-to-b from-blue-900/50 to-blue-950/50">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+              {/* Box Office Achievement */}
+              <div className="md:col-span-1">
+                <h2 className="text-4xl font-bold mb-4 flex items-center">
+                  <TrendingUp className="mr-2" /> Box Office Achievement
+                </h2>
+                <div className="max-w-xl bg-gradient-to-r from-orange-500/20 to-orange-600/10 rounded-lg p-8 border border-orange-500/30">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold mb-5 text-orange-400">Global Box Office Milestone</h3>
+                      <div className="space-y-4">
+                        <p className="text-lg">
+                          <span className="text-3xl font-bold text-orange-400">$1.30B</span>
+                          <span className="text-gray-300 ml-2">Worldwide</span>
+                        </p>
+                        <p className="text-lg">
+                          <span className="text-2xl font-bold text-orange-400">#23</span>
+                          <span className="text-gray-300 ml-2">All-time Global Ranking</span>
+                        </p>
+                        <p className="text-gray-300">
+                          First Chinese film to surpass $1 billion at the global box office
+                        </p>
+                      </div>
+                      <Link 
+                        to="/box-office" 
+                        className="inline-flex items-center mt-6 text-orange-400 hover:text-orange-300 transition-colors"
+                      >
+                        View Full Rankings
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Link>
+                    </div>
+                    <div className="flex-shrink-0">
+                      <div className="relative w-36 h-36 rounded-full bg-orange-500/20 flex items-center justify-center">
+                        <div className="absolute inset-0 border-4 border-orange-500/30 rounded-full animate-pulse"></div>
+                        <div className="text-center">
+                          <div className="text-4xl font-bold text-orange-400">#1</div>
+                          <div className="text-gray-300 mt-3">in China</div>
+                          <div className="text-gray-300 text-xs mt-1">Box Office History</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Reviews */}
+              <div className="md:col-span-1 md:pl-8">
+                <h2 className="text-3xl font-bold mb-6 flex items-center">
+                  <Star className="mr-2" /> Reviews
+                </h2>
+                <div className="grid grid-cols-1 gap-6 max-w-lg">
+                  <RatingCard 
+                    site="IMDb"
+                    logo="/images/imdb-logo.png"
+                    score={ratings.imdb.score}
+                    votes={ratings.imdb.votes}
+                    url="https://www.imdb.com/title/tt34956443/"
+                    starColor="text-yellow-400"
+                  />
+                  <RatingCard 
+                    site="豆瓣"
+                    logo="/images/douban-logo.ico"
+                    score={ratings.douban.score}
+                    votes={ratings.douban.votes}
+                    url="https://movie.douban.com/subject/34780991/"
+                    starColor="text-green-400"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* Image Carousel Section */}
-        <section className="mb-16">
+        <section className="mb-16 mt-16">
           <h2 className="text-3xl font-bold mb-6 flex items-center">
             <Film className="mr-2" /> Movie Poster
           </h2>
-          <Suspense fallback={
-            <div className="h-[500px] bg-blue-800 bg-opacity-30 rounded-lg animate-pulse flex items-center justify-center">
-              <div className="text-white">Loading images...</div>
+          <Link to="/posters" className="block">
+            <div className="max-w-sm mx-auto group">
+              <img 
+                src="/bigposts/homepage_post.webp" 
+                alt="Movie Poster" 
+                className="w-full aspect-[2/3] object-cover transition-transform group-hover:scale-105 rounded-lg" 
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="mt-4 text-center">
+                <span className="text-white text-lg font-semibold group-hover:text-blue-300 transition-colors">
+                  View All 25 Posters
+                </span>
+              </div>
             </div>
-          }>
-            <ImageCarousel />
-          </Suspense>
+          </Link>
         </section>
 
         {/* Mythology Background */}

@@ -12,7 +12,9 @@ const Navigation: React.FC = () => {
         <div className="flex justify-end items-center h-16">
           <div className="flex space-x-6">
             <Link to="/" className="text-white hover:text-blue-300 transition">Home</Link>
+            <Link to="/box-office" className="text-white hover:text-blue-300 transition">Box Office</Link>
             <Link to="/characters" className="text-white hover:text-blue-300 transition">Characters</Link>
+            <Link to="/posters" className="text-white hover:text-blue-300 transition">Posters</Link>
             <Link to="/qa" className="text-white hover:text-blue-300 transition">Q&A</Link>
           </div>
         </div>

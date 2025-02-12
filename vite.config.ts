@@ -16,13 +16,24 @@ export default defineConfig({
       usePolling: true
     }
   },
+  css: {
+    postcss: {
+      plugins: [
+        require('tailwindcss'),
+        require('autoprefixer'),
+      ],
+    },
+  },
   build: {
     rollupOptions: {
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'ui-vendor': ['lucide-react'],
-        }
+        },
+        input: {
+          main: '/index.html',
+        },
       }
     },
     minify: 'esbuild',
