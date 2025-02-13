@@ -3,7 +3,7 @@ import Navigation from './Navigation';
 import ScrollToTop from './ScrollToTop';
 import { Maximize2, X } from 'lucide-react';
 import './BoxOffice.css';
-import { getTopMovies } from '../data/movieData';
+import { topMovies } from '../data/movieData';
 
 interface Movie {
   rank: number;
@@ -16,7 +16,7 @@ interface Movie {
 const BoxOfficePage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
-  const movies = getTopMovies(10); // 获取前10名电影
+  const movies = topMovies;
 
   return (
     <div className="box-office">
@@ -26,7 +26,7 @@ const BoxOfficePage: React.FC = () => {
         <div className="container mx-auto px-4 py-12">
           <h1 className="text-4xl font-bold mb-3">Global Box Office Rankings</h1>
           <p className="text-lg text-gray-300 mb-8">
-            Ne Zha 2 ranks #18 in global box office history
+            Ne Zha 2 ranks #17 in global box office history
           </p>
 
           <div className="rankings-table">

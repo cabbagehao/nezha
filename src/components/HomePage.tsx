@@ -131,26 +131,41 @@ const HomePage: React.FC = () => {
                   <TrendingUp className="mr-2" /> Box Office Achievement
                 </h2>
                 <div className="max-w-xl bg-gradient-to-r from-orange-500/20 to-orange-600/10 rounded-lg p-8 border border-orange-500/30">
-                  <div className="text-2xl font-bold mb-2">
-                    {topMovie?.boxOffice}
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold mb-5 text-orange-400">Global Box Office Milestone</h3>
+                      <div className="space-y-4">
+                        <p className="text-lg">
+                          <span className="text-3xl font-bold text-orange-400">{topMovie?.boxOffice}</span>
+                          <span className="text-gray-300 ml-2">Worldwide</span>
+                        </p>
+                        <p className="text-lg">
+                          <span className="text-2xl font-bold text-orange-400">#17</span>
+                          <span className="text-gray-300 ml-2">All-time Global Ranking</span>
+                        </p>
+                        <p className="text-gray-300">
+                          First Chinese animated film to surpass $1.3 billion at the global box office
+                        </p>
+                      </div>
+                      <Link 
+                        to="/box-office" 
+                        className="inline-flex items-center mt-6 text-orange-400 hover:text-orange-300 transition-colors"
+                      >
+                        View Full Rankings
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Link>
+                    </div>
+                    <div className="flex-shrink-0">
+                      <div className="relative w-36 h-36 rounded-full bg-orange-500/20 flex items-center justify-center">
+                        <div className="absolute inset-0 border-4 border-orange-500/30 rounded-full circle-pulse"></div>
+                        <div className="text-center">
+                          <div className="text-4xl font-bold text-orange-400">#1</div>
+                          <div className="text-gray-300 mt-3">in China</div>
+                          <div className="text-gray-300 text-xs mt-1">Box Office History</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-lg text-gray-300 mb-4">
-                    Global Box Office
-                  </p>
-                  <div className="text-xl font-semibold mb-2">
-                    #1 Highest Grossing Film
-                  </div>
-                  <p className="text-gray-300">
-                    Ne Zha 2 has become the highest-grossing film of all time in China, 
-                    surpassing all previous records and setting a new benchmark for 
-                    animated features worldwide.
-                  </p>
-                  <Link 
-                    to="/box-office" 
-                    className="inline-flex items-center mt-4 text-blue-400 hover:text-blue-300"
-                  >
-                    View Box Office Details <ArrowRight className="ml-1 w-4 h-4" />
-                  </Link>
                 </div>
               </div>
 
