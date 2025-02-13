@@ -70,21 +70,28 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      {/* Hero Section */}
+      {/* Hero Section - 优化背景图片加载 */}
       <div 
-        className="relative h-[30vh] bg-cover bg-center bg-no-repeat"
-        style={{ 
-          backgroundImage: `url(/images/nezha-homepage.jpg)`,
-          backgroundPosition: 'center 20%'
-        }}
+        className="relative h-[30vh] md:h-[35vh] bg-blue-900"  // 增加高度，并添加响应式
       >
+        <img 
+          src="/images/nezha-homepage.jpg"
+          alt="Nezha Movie Background"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          style={{ 
+            objectPosition: 'center 20%'
+          }}
+        />
         <Navigation />
         
         <div className="absolute inset-0 bg-black bg-opacity-70">
           <div className="container mx-auto px-4 h-full flex items-center">
             <div className="max-w-3xl mt-8 md:mt-0">
-              <h1 className="text-3xl md:text-4xl font-bold mb-3">Nezha: Mo Tong Nao Hai</h1>
-              <p className="text-base md:text-lg mb-4">Experience the legendary tale of Ne Zha in this spectacular animated feature</p>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">Nezha: Mo Tong Nao Hai</h1>
+              <p className="text-lg md:text-xl lg:text-2xl mb-4 md:mb-6">Experience the legendary tale of Ne Zha in this spectacular animated feature</p>
             </div>
           </div>
         </div>

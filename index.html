@@ -16,7 +16,7 @@
     <!-- SEO Meta Tags -->
     <title>Nezha: Mo Tong Nao Hai - A Modern Chinese Animation Epic | 哪吒：魔童闹海</title>
     <meta name="description" content="Journey into the reimagined world of Chinese mythology with Nezha: Mo Tong Nao Hai (哪吒：魔童闹海). A visually stunning animated feature that brings the legendary tale of rebellion, destiny, and redemption to life for a new generation." />
-    <meta name="keywords" content="Nezha, Mo Tong Nao Hai, Chinese animation, mythology, animated movie, fantasy film, Chinese mythology, 哪吒, 魔童闹海, animated feature, Dragon King, Li Jing, Chen Tang Pass, Investiture of the Gods, Buddhist mythology, Taoist mythology" />
+    <meta name="keywords" content="Nezha, Mo Tong Nao Hai, Chinese animation, mythology, animated movie, fantasy film" />
     
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Nezha: Mo Tong Nao Hai - A Modern Chinese Animation Epic" />
@@ -27,7 +27,7 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://nezha.yhc.so" />
 
-    <!-- Google Analytics -->
+    <!-- Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8EDHPTB1R8"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -35,129 +35,9 @@
       gtag('js', new Date());
       gtag('config', 'G-8EDHPTB1R8');
     </script>
-
-    <!-- 百度统计 -->
-    <script>
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?b71e8bbcce7ae853318370e641074b93";
-        var s = document.getElementsByTagName("script")[0]; 
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
-    <!-- 预加载首屏关键资源 -->
-    <link rel="preload" href="/images/nezha-homepage.jpg" as="image" fetchpriority="high" />
-    <link rel="preload" href="/images/imdb-logo.png" as="image" fetchpriority="high" />
-    <link rel="preload" href="/images/douban-logo.ico" as="image" fetchpriority="high" />
-    
-    <!-- 延迟加载非关键资源 -->
-    <link rel="preconnect" href="https://www.youtube.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.youtube.com" />
-
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(180deg, #1e3a8a 0%, #172554 100%);
-        color: white;
-        min-height: 100vh;
-      }
-
-      #root {
-        min-height: 100vh;
-        background: linear-gradient(180deg, #1e3a8a 0%, #172554 100%);
-        opacity: 0;
-        transition: opacity 0.3s ease-in;
-      }
-
-      #root.loaded {
-        opacity: 1;
-      }
-
-      /* 添加首屏必要的样式 */
-      .hero-section {
-        position: relative;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(180deg, rgba(30, 58, 138, 0.5) 0%, rgba(23, 37, 84, 0.5) 100%);
-      }
-
-      .hero-content {
-        text-align: center;
-        padding: 2rem;
-        max-width: 48rem;
-        margin: 0 auto;
-      }
-
-      .hero-title {
-        position: absolute;
-        top: 0;
-        left: -9999px;
-        /* 对屏幕阅读器可见，但在视觉上隐藏 */
-      }
-
-      .hero-heading {
-        font-size: 3.5rem;
-        font-weight: bold;
-        margin-bottom: 1.5rem;
-        line-height: 1.2;
-      }
-
-      .hero-subtitle {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-        opacity: 0.9;
-      }
-    </style>
   </head>
   <body>
-    <div id="root">
-      <main>
-        <h1 class="hero-title">哪吒：魔童闹海 | Nezha: Mo Tong Nao Hai</h1>
-        <div class="hero-section">
-          <div class="hero-content">
-            <h2 class="hero-heading">Nezha: Mo Tong Nao Hai</h2>
-            <p class="hero-subtitle">A Modern Chinese Animation Epic</p>
-          </div>
-        </div>
-      </main>
-    </div>
-
+    <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script>
-      window.addEventListener('load', function() {
-        const root = document.getElementById('root');
-        requestAnimationFrame(() => {
-          root.classList.add('loaded');
-        });
-      });
-    </script>
-
-    <script>
-      // 保存滚动位置
-      window.addEventListener('beforeunload', function() {
-        sessionStorage.setItem('scrollPosition', window.scrollY.toString());
-      });
-
-      // 恢复滚动位置
-      window.addEventListener('load', function() {
-        const savedPosition = sessionStorage.getItem('scrollPosition');
-        if (savedPosition) {
-          // 使用 requestAnimationFrame 确保在页面渲染后恢复位置
-          requestAnimationFrame(() => {
-            window.scrollTo({
-              top: parseInt(savedPosition),
-              behavior: 'instant' // 使用即时滚动避免动画
-            });
-            // 清除保存的位置
-            sessionStorage.removeItem('scrollPosition');
-          });
-        }
-      });
-    </script>
   </body>
 </html>
