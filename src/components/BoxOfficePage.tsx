@@ -33,12 +33,12 @@ const BoxOfficePage: React.FC = () => {
     { rank: 15, title: "Barbie", boxOffice: "$1.45B", year: 2023, country: "USA" },
     { rank: 16, title: "Avengers: Age of Ultron", boxOffice: "$1.40B", year: 2015, country: "USA" },
     { rank: 17, title: "The Super Mario Bros. Movie", boxOffice: "$1.36B", year: 2023, country: "Japan" },
-    { rank: 18, title: "Black Panther", boxOffice: "$1.35B", year: 2018, country: "USA" },
-    { rank: 19, title: "Harry Potter and the Deathly Hallows – Part 2", boxOffice: "$1.34B", year: 2011, country: "UK" },
-    { rank: 20, title: "Deadpool & Wolverine", boxOffice: "$1.34B", year: 2024, country: "USA" },
-    { rank: 21, title: "Star Wars: The Last Jedi", boxOffice: "$1.33B", year: 2017, country: "USA" },
-    { rank: 22, title: "Jurassic World: Fallen Kingdom", boxOffice: "$1.31B", year: 2018, country: "USA" },
-    { rank: 23, title: "Ne Zha 2", boxOffice: "$1.30B", year: 2025, country: "China" },
+    { rank: 18, title: "Ne Zha 2", boxOffice: "$1.35B", year: 2025, country: "China" },
+    { rank: 19, title: "Black Panther", boxOffice: "$1.35B", year: 2018, country: "USA" },
+    { rank: 20, title: "Harry Potter and the Deathly Hallows – Part 2", boxOffice: "$1.34B", year: 2011, country: "UK" },
+    { rank: 21, title: "Deadpool & Wolverine", boxOffice: "$1.34B", year: 2024, country: "USA" },
+    { rank: 22, title: "Star Wars: The Last Jedi", boxOffice: "$1.33B", year: 2017, country: "USA" },
+    { rank: 23, title: "Jurassic World: Fallen Kingdom", boxOffice: "$1.31B", year: 2018, country: "USA" },
     { rank: 24, title: "Frozen", boxOffice: "$1.29B", year: 2013, country: "USA" },
     { rank: 25, title: "Beauty and the Beast", boxOffice: "$1.26B", year: 2017, country: "USA" }
   ];
@@ -51,7 +51,7 @@ const BoxOfficePage: React.FC = () => {
         <div className="container mx-auto px-4 py-12">
           <h1 className="text-4xl font-bold mb-3">Global Box Office Rankings</h1>
           <p className="text-lg text-gray-300 mb-8">
-            Ne Zha 2 ranks #23 in global box office history
+            Ne Zha 2 ranks #18 in global box office history
           </p>
 
           <div className="rankings-table">

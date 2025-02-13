@@ -12,7 +12,7 @@ const HomePage: React.FC = () => {
   const ratings: Ratings = {
     imdb: {
       score: '8.3',
-      votes: '2k'
+      votes: '2.2k'
     },
     douban: {
       score: '8.5',
@@ -118,20 +118,6 @@ const HomePage: React.FC = () => {
           </div>
         </section>
 
-        {/* Trailer Section */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-6 flex items-center">
-            <Film className="mr-2" /> Official Trailer
-          </h2>
-          <Suspense fallback={
-            <div className="h-[500px] bg-blue-800 bg-opacity-30 rounded-lg animate-pulse flex items-center justify-center">
-              <div className="text-white">Loading trailer...</div>
-            </div>
-          }>
-            <TrailerSection />
-          </Suspense>
-        </section>
-
         {/* Reviews and Box Office Section */}
         <section className="py-16 bg-gradient-to-b from-blue-900/50 to-blue-950/50">
           <div className="container mx-auto px-4">
@@ -229,6 +215,20 @@ const HomePage: React.FC = () => {
               </div>
             </div>
           </Link>
+        </section>
+
+        {/* Trailer Section - 移动到海报后面 */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold mb-6 flex items-center">
+            <Film className="mr-2" /> Official Trailer
+          </h2>
+          <Suspense fallback={
+            <div className="h-[500px] bg-blue-800 bg-opacity-30 rounded-lg animate-pulse flex items-center justify-center">
+              <div className="text-white">Loading trailer...</div>
+            </div>
+          }>
+            <TrailerSection />
+          </Suspense>
         </section>
 
         {/* Mythology Background */}
