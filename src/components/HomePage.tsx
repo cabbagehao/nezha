@@ -84,6 +84,8 @@ const HomePage: React.FC = () => {
           loading="eager"
           fetchpriority="high"
           decoding="async"
+          importance="high"
+          sizes="100vw"
           style={{ 
             objectPosition: 'center 20%'
           }}
