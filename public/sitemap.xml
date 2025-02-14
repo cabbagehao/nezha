@@ -3,7 +3,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://nezha.yhc.so/</loc>
-    <lastmod>2024-03-20</lastmod>
+    <lastmod>2025-02-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,7 +11,7 @@
   <!-- Box Office -->
   <url>
     <loc>https://nezha.yhc.so/box-office</loc>
-    <lastmod>2024-03-20</lastmod>
+    <lastmod>2025-02-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -19,7 +19,7 @@
   <!-- Character Guide -->
   <url>
     <loc>https://nezha.yhc.so/characters</loc>
-    <lastmod>2024-03-20</lastmod>
+    <lastmod>2025-02-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -27,7 +27,7 @@
   <!-- Posters Page -->
   <url>
     <loc>https://nezha.yhc.so/posters</loc>
-    <lastmod>2024-03-20</lastmod>
+    <lastmod>2025-02-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -35,7 +35,7 @@
   <!-- Q&A Page -->
   <url>
     <loc>https://nezha.yhc.so/qa</loc>
-    <lastmod>2024-03-20</lastmod>
+    <lastmod>2025-02-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
