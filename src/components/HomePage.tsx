@@ -78,7 +78,7 @@ const HomePage: React.FC = () => {
         className="relative h-[30vh] md:h-[35vh] bg-blue-900"  // 增加高度，并添加响应式
       >
         <img 
-          src="/images/nezha-homepage.jpg"
+          src="/images/nezha-homepage.webp"
           alt="Nezha Movie Background"
           className="absolute inset-0 w-full h-full object-cover"
           loading="eager"
