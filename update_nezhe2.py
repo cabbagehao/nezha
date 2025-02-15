@@ -40,7 +40,7 @@ def update_github_data(rank: str, box_office: str):
     try:
         # 将票房转换为 B 为单位（不四舍五入）
         amount = float(box_office.replace('$', '').replace(',', ''))
-        box_office_b = f"${amount/1000000000:.2f}B".replace('.00B', 'B')
+        box_office_b = f"${amount/1000000000:.3f}B".replace('.000B', 'B')
 
         ts_file = f'{git_dir}/src/data/movieData.ts'
         # 读取文件内容
@@ -233,7 +233,7 @@ def get_nezha_box_office():
                                 wiki_box_rounded = round(current_wiki_box_office, 3)
                                 ts_box_rounded = round(current_ts_box_office, 3)
                                 if wiki_box_rounded > ts_box_rounded:
-                                    print(f"维基百科票房（${current_wiki_box_office:.2f}B）大于当前记录（${current_ts_box_office}B），更新数据")
+                                    print(f"维基百科票房（${wiki_box_rounded:.3f}B）大于当前记录（${ts_box_rounded:.3f}B），更新数据")
                                     update_github_data(rank, box_office)
                                 else:
                                     print(f"维基百科票房（${wiki_box_rounded:.3f}B）不大于当前记录（${ts_box_rounded:.3f}B），无需更新")
