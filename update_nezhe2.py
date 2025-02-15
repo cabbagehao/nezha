@@ -229,9 +229,14 @@ def get_nezha_box_office():
                                 current_ts_box_office = float(match.group(1).replace('$', '').replace('B', ''))
                                 # 将当前票房转换为 B 单位进行比较
                                 current_wiki_box_office = current_box_office / 1000000000
-                                if current_wiki_box_office > current_ts_box_office:
+                                # 使用3位有效数字进行比较
+                                wiki_box_rounded = round(current_wiki_box_office, 3)
+                                ts_box_rounded = round(current_ts_box_office, 3)
+                                if wiki_box_rounded > ts_box_rounded:
                                     print(f"维基百科票房（${current_wiki_box_office:.2f}B）大于当前记录（${current_ts_box_office}B），更新数据")
                                     update_github_data(rank, box_office)
+                                else:
+                                    print(f"维基百科票房（${wiki_box_rounded}B）不大于当前记录（${ts_box_rounded}B），无需更新")
                     except Exception as e:
                         print(f"检查 movieData.ts 时发生错误: {e}")
                 elif current_box_office > last_box_office:
