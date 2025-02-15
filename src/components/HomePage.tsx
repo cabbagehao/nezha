@@ -142,7 +142,7 @@ const HomePage: React.FC = () => {
                           <span className="text-gray-300 ml-2">Worldwide</span>
                         </p>
                         <p className="text-lg">
-                          <span className="text-2xl font-bold text-orange-400">#17</span>
+                          <span className="text-2xl font-bold text-orange-400">#{topMovie?.rank}</span>
                           <span className="text-gray-300 ml-2">All-time Global Ranking</span>
                         </p>
                         <p className="text-gray-300">
