@@ -42,7 +42,7 @@ const BoxOfficePage: React.FC = () => {
             {movies.map((movie) => (
               <div 
                 key={movie.rank} 
-                className={`rankings-row ${movie.title === "Ne Zha 2" ? "highlight" : ""}`}
+                className={`rankings-row ${movie.title === "Ne Zha: Mo tong nao hai" ? "highlight" : ""}`}
               >
                 <div className="rank-col">#{movie.rank}</div>
                 <div className="poster-col">

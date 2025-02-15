@@ -276,7 +276,7 @@ def main():
         time.sleep(1)
 
 if __name__ == "__main__":
-    print("开始监控《哪吒之魔童闹海》票房数据...")
+    print("开始监控《哪吒：魔童闹海》票房数据...")
     print("程序将每10分钟更新一次数据")
     print("-" * 50)
     main()
