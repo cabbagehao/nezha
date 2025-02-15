@@ -17,7 +17,7 @@ last_box_office = None
 def git_push_changes(box_office_b: str, new_rank: int):
     """提交更改到 Git"""
     try:
-        git_dir = '/home/user/Projects/nezha'
+        git_dir = os.path.dirname(os.path.abspath(__file__))
         os.chdir(git_dir)
         
         # Git 操作
@@ -177,7 +177,7 @@ def get_nezha_box_office():
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
         }
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=20)
         response.encoding = 'utf-8'
         
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -247,6 +247,6 @@ def main():
 
 if __name__ == "__main__":
     print("开始监控《哪吒之魔童闹海》票房数据...")
-    print("程序将每分钟更新一次数据")
+    print("程序将每10分钟更新一次数据")
     print("-" * 50)
     main()
