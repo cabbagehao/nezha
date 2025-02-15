@@ -48,9 +48,13 @@ const BoxOfficePage: React.FC = () => {
                 <div className="poster-col">
                   <div className="poster-thumbnail">
                     <img 
-                      src={`/films/${movie.title.replace(/:/g, '')}.jpg`} 
+                      src={`/films/${movie.title.replace(/:/g, '')}${
+                        movie.title === 'Ne Zha 2' ? '.webp' : '.jpg'
+                      }`}
                       alt={`${movie.title} poster`}
-                      onClick={() => setSelectedImage(`/films/${movie.title.replace(/:/g, '')}.jpg`)}
+                      onClick={() => setSelectedImage(`/films/${movie.title.replace(/:/g, '')}${
+                        movie.title === 'Ne Zha 2' ? '.webp' : '.jpg'
+                      }`)}
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = '/placeholder.jpg';
                       }}
