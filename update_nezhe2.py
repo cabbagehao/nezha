@@ -23,7 +23,7 @@ def git_push_changes(box_office_b: str, new_rank: int):
         # Git 操作
         subprocess.run(['git', 'pull'], check=True)
         subprocess.run(['git', 'add', '.'], check=True)
-        commit_message = f"Update: Ne Zha 2 box office to {box_office_b} (Rank: {new_rank})"
+        commit_message = f"Update: Ne Zha: Mo tong nao hai box office to {box_office_b} (Rank: {new_rank})"
         subprocess.run(['git', 'commit', '-m', commit_message], check=True)
         subprocess.run(['git', 'push'], check=True)
 
@@ -93,9 +93,9 @@ def update_github_data(rank: str, box_office: str):
             raise Exception("未能成功解析任何电影数据")
 
         # 找到哪吒2的当前位置并更新数据
-        nezha_index = next((i for i, m in enumerate(movies) if m['title'] == "Ne Zha 2"), -1)
+        nezha_index = next((i for i, m in enumerate(movies) if m['title'] == "Ne Zha: Mo tong nao hai"), -1)
         if nezha_index == -1:
-            raise Exception("未找到Ne Zha 2的数据")
+            raise Exception("未找到Ne Zha: Mo tong nao hai的数据")
 
         # 创建新的哪吒2数据
         nezha_data = movies[nezha_index].copy()
@@ -224,7 +224,7 @@ def get_nezha_box_office():
                     try:
                         with open(f'{git_dir}/src/data/movieData.ts', 'r', encoding='utf-8') as file:
                             content = file.read()
-                            match = re.search(r'title: "Ne Zha 2"[^}]*boxOffice: "([^"]+)"', content)
+                            match = re.search(r'title: "Ne Zha: Mo tong nao hai"[^}]*boxOffice: "([^"]+)"', content)
                             if match:
                                 current_ts_box_office = float(match.group(1).replace('$', '').replace('B', ''))
                                 # 将当前票房转换为 B 单位进行比较
