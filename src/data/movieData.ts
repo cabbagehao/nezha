@@ -15,7 +15,7 @@ export const topMovies: Movie[] = [
   { rank: 5, title: "Star Wars: The Force Awakens", boxOffice: "$2.07B", year: 2015, country: "USA" },
   { rank: 6, title: "Avengers: Infinity War", boxOffice: "$2.05B", year: 2018, country: "USA" },
   { rank: 7, title: "Spider-Man: No Way Home", boxOffice: "$1.92B", year: 2021, country: "USA" },
-  { rank: 8, title: "Ne Zha: Mo tong nao hai", boxOffice: "$1.707B", year: 2025, country: "China", posterUrl: "/bigposts/homepage_post.webp" },
+  { rank: 8, title: "Ne Zha: Mo tong nao hai", boxOffice: "$1.767B", year: 2025, country: "China", posterUrl: "/bigposts/homepage_post.webp" },
   { rank: 9, title: "Inside Out 2", boxOffice: "$1.70B", year: 2024, country: "USA" },
   { rank: 10, title: "Jurassic World", boxOffice: "$1.67B", year: 2015, country: "USA" },
   { rank: 11, title: "The Lion King", boxOffice: "$1.66B", year: 2019, country: "USA" },
