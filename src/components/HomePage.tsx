@@ -12,12 +12,12 @@ const TrailerSection = lazy(() => import('./TrailerSection'));
 const HomePage: React.FC = () => {
   const ratings: Ratings = {
     imdb: {
-      score: '8.3',
-      votes: '2.2k'
+      score: '8.2',
+      votes: '8.4k'
     },
     douban: {
       score: '8.5',
-      votes: '1M'
+      votes: '1.3M'
     }
   };
 
